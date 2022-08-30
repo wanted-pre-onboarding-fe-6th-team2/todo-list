@@ -13,6 +13,15 @@
     "func-style": ["error", "expression"],
     "prettier/prettier": "error",
     "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
-    "no-var": "error"
+    "no-unused-vars": "error",
+    "no-var": "error",
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "react/jsx-no-useless-fragment": "error"
   }
 }
