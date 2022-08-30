@@ -12,9 +12,7 @@
     ],
     "func-style": ["error", "expression"],
     "prettier/prettier": "error",
-    "prefer-arrow-callback": [
-      "error",
-      { "allowNamedFunctions": true }
-    ]
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "no-var": "error"
   }
 }
