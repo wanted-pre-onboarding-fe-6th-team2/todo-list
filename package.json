@@ -15,7 +15,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "lint:code": "eslint --ext .js,.jsx",
+    "lint:code-fix": "eslint --fix --ext .js,.jsx",
+    "prettier:code-fix": "prettier --write"
   },
   "eslintConfig": {
     "extends": [
@@ -40,7 +44,21 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-eslint": "^15.0.1"
+  },
+  "lint-staged": {
+    "*.json": [
+      "yarn prettier:code-fix"
+    ],
+    ".*rc": [
+      "yarn prettier:code-fix"
+    ],
+    "*.{js,jsx}": [
+      "yarn lint:code-fix --cache",
+      "yarn lint:style-fix --cache"
+    ]
   }
 }
