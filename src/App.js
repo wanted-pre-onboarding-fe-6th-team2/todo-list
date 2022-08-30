@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import resetCss from './styles/global';
+import resetCss from 'styles/global';
 
 const App = () => (
   <div>
