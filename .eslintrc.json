@@ -1,0 +1,20 @@
+{
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "prefer-arrow"],
+  "rules": {
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": false,
+        "singleReturnOnly": true,
+        "classPropertiesAllowed": true
+      }
+    ],
+    "func-style": ["error", "expression"],
+    "prettier/prettier": "error",
+    "prefer-arrow-callback": [
+      "error",
+      { "allowNamedFunctions": true }
+    ]
+  }
+}
