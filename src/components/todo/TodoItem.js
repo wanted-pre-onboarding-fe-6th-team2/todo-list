@@ -74,9 +74,9 @@ const TodoItem = ({ todo }) => {
         </>
       ) : (
         <>
-          <Styled.Paragraph iscompleted={currentTodo.isCompleted}>
+          <Styled.TodoContent iscompleted={currentTodo.isCompleted}>
             {currentTodo.todo}
-          </Styled.Paragraph>
+          </Styled.TodoContent>
           <div>
             <Styled.Button onClick={() => handleToggleTodo(currentTodo)}>완료</Styled.Button>
             <Styled.Button onClick={handleToggleEditMode}>수정</Styled.Button>
