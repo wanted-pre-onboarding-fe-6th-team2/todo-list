@@ -1,7 +1,6 @@
 import { Global } from '@emotion/react';
 import { ROUTES } from 'constants/route';
 import { LOCALSTORAGE } from 'constants/localstorage';
-import Home from 'pages/Home/Home';
 import Signin from 'pages/Signin/Signin';
 import Signup from 'pages/Signup/Signup';
 import Todos from 'pages/Todos/Todos';
@@ -14,7 +13,10 @@ const App = () => {
     <div>
       <Global styles={resetCss} />
       <Routes>
-        <Route path={ROUTES.HOME} element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Home />} />
+        <Route
+          path={ROUTES.HOME}
+          element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Navigate to={ROUTES.SIGNIN} />}
+        />
         <Route
           path={ROUTES.TODOS}
           element={hasToken ? <Todos /> : <Navigate to={ROUTES.SIGNIN} />}
