@@ -8,6 +8,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import resetCss from 'styles/global';
 
 const App = () => {
+  // localStorage.setItem(
+  //   'token',
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQzQG5hdmVyLmNvbSIsInN1YiI6MzQwOCwiaWF0IjoxNjYxOTQwMjY2LCJleHAiOjE2NjI1NDUwNjZ9.hcMONctw9EHIcPd1fCwr7pb2jkW_k7bJ388kmgPobws'
+  // );
   const hasToken = !!localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN);
   return (
     <div>

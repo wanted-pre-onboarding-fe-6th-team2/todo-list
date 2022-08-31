@@ -1,5 +1,7 @@
-import React from 'react';
+import TodoList from 'components/todo/TodoList';
 
-const Todos = () => <div>Todos</div>;
+const Todos = () => {
+  return <TodoList />;
+};
 
 export default Todos;

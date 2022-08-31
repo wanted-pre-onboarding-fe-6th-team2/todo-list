@@ -16,10 +16,10 @@ const TodoForm = ({ text, setText }) => {
     inputRef.current.focus();
     e.preventDefault();
 
-    const data = {
-      todo: todoInput,
-    };
-    TodoApiService.createTodo(data).then(res => {
+    const todo = todoInput;
+    const accessToken = localStorage.getItem('token') || '';
+
+    TodoApiService.createTodo({ todo, accessToken }).then(res => {
       setText(!text);
       setTodoInput('');
     });

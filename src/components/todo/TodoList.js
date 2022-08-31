@@ -10,12 +10,10 @@ const TodoList = () => {
 
   // Get 요청을 위한 useEffect
   useEffect(() => {
-    const accessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGQzQG5hdmVyLmNvbSIsInN1YiI6MzQwOCwiaWF0IjoxNjYxOTQwMjY2LCJleHAiOjE2NjI1NDUwNjZ9.hcMONctw9EHIcPd1fCwr7pb2jkW_k7bJ388kmgPobws';
+    const accessToken = localStorage.getItem('token') || '';
 
     TodoApiService.getTodos({ accessToken }).then(res => {
-      console.log(res);
-      setTodo(res.data);
+      setTodo(res);
     });
   }, [text]);
 
