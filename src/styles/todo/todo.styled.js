@@ -49,7 +49,7 @@ const Ul = styled.ul`
   width: 100%;
 `;
 
-const Li = styled.li`
+const TodoItem = styled.li`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -74,4 +74,4 @@ const Paragraph = styled.p`
   color: ${props => (props.iscompleted ? '#aaa' : '#000')};
 `;
 
-export { Container, Form, Input, Button, Ul, Li, Paragraph };
+export { Container, Form, Input, Button, Ul, TodoItem, Paragraph };
