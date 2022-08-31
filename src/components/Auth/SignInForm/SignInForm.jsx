@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Styled from 'components/SignupForm.style';
-import AuthApiService from 'api/auth';
+import authApiService from 'api/auth';
 import { loginValidator } from 'utils/validator';
 import { ROUTES } from 'constants/route';
 import { LOCALSTORAGE } from 'constants/localstorage';
@@ -36,7 +36,7 @@ const SignInForm = () => {
     e.preventDefault();
     const { email, password } = inputs;
     try {
-      const signInResponse = await AuthApiService.signIn({ email, password });
+      const signInResponse = await authApiService.signIn({ email, password });
       // 토큰 등록
       localStorage.setItem(LOCALSTORAGE.ACCESS_TOKEN, signInResponse.access_token);
       // 리다이렉트
@@ -50,7 +50,7 @@ const SignInForm = () => {
   return (
     <Styled.Container>
       <Styled.Title>회원가입</Styled.Title>
-      <Styled.Form onSubmit={e => handleSignIn(e)}>
+      <Styled.Form onSubmit={handleSignIn}>
         <Styled.LabelBox>
           <Styled.Label htmlFor="email">이메일</Styled.Label>
           {!validations.isValidEmail && inputs.email && (
