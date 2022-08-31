@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import * as Styled from 'styles/todo/todo.styled';
 import TodoApiService from 'api/todos';
 
-const TodoForm = () => {
+const TodoForm = ({ setTodos }) => {
   const [newTodo, setNewTodo] = useState('');
 
   const inputRef = useRef();
@@ -13,7 +13,10 @@ const TodoForm = () => {
     e.preventDefault();
 
     if (newTodo) {
-      TodoApiService.createTodo({ todo: newTodo, accessToken });
+      TodoApiService.createTodo({ todo: newTodo, accessToken }).then(response => {
+        setTodos(prev => [...prev, response]);
+      });
+
       inputRef.current.value = '';
     } else {
       alert('할 일을 입력해주세요.');
