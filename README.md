@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 2팀
+> 김주탁, 류하준, 윤영주, 이형민, 조남경, 하성화, 강주희, 변지윤
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 목차
+- [폴더구조](#폴더구조)
+- [Best Practice](#Best-Practice)
+- [Git/GitHub](#Git/GitHub)
+- [Eslint/Prettier/Husky](#Eslint/Prettier/Husky)
+- [기타 컨벤션](#기타-컨벤션)
 
-## Available Scripts
+## 폴더 구조
+__src/api__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| `auth`              | 로그인, 회원가입 관련 api           |
+| `core`              | axios request, response, error |
+| `todos`             | 투두 관련 api                    |
 
-In the project directory, you can run:
+__src/components__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| `PageContainer`     | 회원가입 컴포넌트의 컨테이너          |
+| `SignupForm`        | 회원가입 컴포넌트                  |
 
-### `npm start`
+__src/constants__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| `localstorage`      | 로컬스토리지의 key값 상수화         |
+| `route`             | 라우터 경로 상수화                 |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+__src/pages__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| Signin/`Signin`     | 로그인 페이지                     |
+| Signup/`Signup`     | 회원가입 페이지                    |
+| Todos/`Todos`       | 투두 리스트 페이지                 |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+__src/utils__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| `validator`         | form 데이터의 유효성 검사           |
 
-### `npm test`
+__src/__
+| 함수                 | 역할                            |
+|---------------------|--------------------------------|
+| `App`               | 라우터 구현                       |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Best Practice
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Router(`src/App`)
+__구현__
+- react-router-dom 라이브러리 설치
+- 브라우저의 localStorage에 토큰이 있는지 확인
+- 토큰 유무에 따라 redirect 하도록 구현
+__이유__
+- App 레벨에서 토큰 유무를 판단하고 리다이렉트를 해주면 한 번의 렌더링 만으로 redirect가 가능해집니다.
+- 만약 컴포넌트 안에서 토큰 유무를 확인하고 redirect 처리를 해주었다면, 접속 불가능한 화면이 잠깐이라도 렌더링 되는데 이 부분이 리액트 동작 측면에서 다소 비효율적이라고 판단하였습니다.
+- 요구사항 특성상 `/` 라우트는 필수 요소가 아니라고 판단해 오로지 redirect 용도로만 기능하도록 구현하였습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+__구현__
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+__이유__
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Git/Github
+- [깃 브랜치 전략 링크](https://github.com/wanted-pre-onboarding-fe-6th-team2/todo-list/wiki/git-branch-%EC%A0%84%EB%9E%B5)
+- [커밋 컨벤션 링크](https://github.com/wanted-pre-onboarding-fe-6th-team2/todo-list/wiki/%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Eslint/Prettier/Husky
+- [코딩 컨벤션 링크](https://github.com/wanted-pre-onboarding-fe-6th-team2/todo-list/wiki/%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98)
+- [emotion 사용 컨벤션 링크](https://github.com/wanted-pre-onboarding-fe-6th-team2/todo-list/wiki/emotion-%EC%82%AC%EC%9A%A9-%EC%BB%A8%EB%B2%A4%EC%85%98)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```JSON
+// .eslintrc.json
+{
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "prefer-arrow"],
+  "rules": {
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": false,
+        "singleReturnOnly": true,
+        "classPropertiesAllowed": true
+      }
+    ],
+    "func-style": ["error", "expression"],
+    "prettier/prettier": "error",
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "no-unused-vars": "error",
+    "no-var": "error",
+    "no-console": "error",
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "react/jsx-no-useless-fragment": "error"
+  }
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```JSON
+// .prettierrc
+{
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "tabWidth": 2,
+  "semi": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "printWidth": 100
+}
+```
