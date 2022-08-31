@@ -9,7 +9,7 @@ const TodoForm = ({ setTodos }) => {
 
   const accessToken = localStorage.getItem('token') || '';
 
-  const handleAddClick = e => {
+  const handleCreateTodo = e => {
     e.preventDefault();
 
     if (newTodo) {
@@ -31,7 +31,7 @@ const TodoForm = ({ setTodos }) => {
         placeholder="할 일을 작성해 주세요"
         onChange={e => setNewTodo(e.target.value)}
       />
-      <Styled.Button onClick={handleAddClick}>추가</Styled.Button>
+      <Styled.Button onClick={handleCreateTodo}>추가</Styled.Button>
     </Styled.Form>
   );
 };

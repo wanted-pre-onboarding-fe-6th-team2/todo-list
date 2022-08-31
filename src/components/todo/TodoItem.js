@@ -8,13 +8,22 @@ const TodoItem = ({ todo }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState('');
 
-  const handleEditMode = () => setIsEditMode(!isEditMode);
+  const handleToggleEditMode = () => setIsEditMode(!isEditMode);
 
-  const handleDelete = id => {
+  const handleDeleteTodo = id => {
     TodoApiService.deleteTodo({ accessToken, todoId: id });
   };
 
-  const handleComplete = todo => {
+  const updateTodo = todo => {
+    TodoApiService.updateTodo({
+      accessToken,
+      isCompleted: todo.isCompleted,
+      todo: todo.todo,
+      todoId: todo.id,
+    });
+  };
+
+  const handleToggleTodo = todo => {
     const completedTodo = {
       ...todo,
       isCompleted: !todo.isCompleted,
@@ -23,7 +32,7 @@ const TodoItem = ({ todo }) => {
     updateTodo(completedTodo);
   };
 
-  const handleEdit = todo => {
+  const handleEditTodo = todo => {
     if (editedTodo !== todo.todo) {
       const newTodo = {
         ...todo,
@@ -36,36 +45,27 @@ const TodoItem = ({ todo }) => {
     }
   };
 
-  const updateTodo = todo => {
-    TodoApiService.updateTodo({
-      accessToken,
-      isCompleted: todo.isCompleted,
-      todo: todo.todo,
-      todoId: todo.id,
-    });
-  };
-
   return (
-    <Styled.Li key={todo.id}>
+    <Styled.TodoItem>
       {isEditMode ? (
         <>
           <Styled.Input defaultValue={todo.todo} onChange={e => setEditedTodo(e.target.value)} />
           <div>
-            <Styled.Button onClick={() => handleEdit(todo)}>수정</Styled.Button>
-            <Styled.Button onClick={handleEditMode}>취소</Styled.Button>
+            <Styled.Button onClick={() => handleEditTodo(todo)}>수정</Styled.Button>
+            <Styled.Button onClick={handleToggleEditMode}>취소</Styled.Button>
           </div>
         </>
       ) : (
         <>
           <Styled.Paragraph iscompleted={todo.isCompleted}>{todo.todo}</Styled.Paragraph>
           <div>
-            <Styled.Button onClick={() => handleComplete(todo)}>완료</Styled.Button>
-            <Styled.Button onClick={handleEditMode}>수정</Styled.Button>
-            <Styled.Button onClick={() => handleDelete(todo.id)}>삭제</Styled.Button>
+            <Styled.Button onClick={() => handleToggleTodo(todo)}>완료</Styled.Button>
+            <Styled.Button onClick={handleToggleEditMode}>수정</Styled.Button>
+            <Styled.Button onClick={() => handleDeleteTodo(todo.id)}>삭제</Styled.Button>
           </div>
         </>
       )}
-    </Styled.Li>
+    </Styled.TodoItem>
   );
 };
 
