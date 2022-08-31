@@ -7,9 +7,12 @@ const TodoItem = ({ list }) => {
   const [switchValue, setSwitchValue] = useState([]);
   const [BtnValue, setBtnValue] = useState(true);
   const [editVal, setEditVal] = useState('');
-  const [word, setWord] = useState(list);
+  const [text, setText] = useState(list.id);
   const [listitem, setlist] = useState(list.todo);
   const [inputVal, setinputVal] = useState(list.isCompleted);
+
+  // api 요청시 필요 항목
+  const accessToken = localStorage.getItem('token') || '';
 
   const inputTxt = e => {
     setEditVal(e.target.value);
@@ -25,36 +28,38 @@ const TodoItem = ({ list }) => {
   //check box
   const updateCheck = async e => {
     setinputVal(!inputVal);
-    const data = {
-      todo: listitem,
-      isCompleted: !inputVal,
-    };
-    TodoApiService.updateTodo(data, word).then(res => {
+
+    const isCompleted = !inputVal;
+    const todo = listitem;
+    const todoId = text;
+
+    TodoApiService.updateTodo({ accessToken, isCompleted, todo, todoId }).then(res => {
       console.log(res);
-      setlist(res.data.todo);
+      setlist(res.todo);
     });
   };
 
   //수정
   const onEdit = async e => {
-    const data = {
-      todo: editVal,
-      isCompleted: inputVal,
-    };
-    TodoApiService.updateTodo(data, word).then(res => {
+    const isCompleted = inputVal;
+    const todo = editVal;
+    const todoId = text;
+
+    TodoApiService.updateTodo({ accessToken, isCompleted, todo, todoId }).then(res => {
       console.log(res);
-      setlist(res.data.todo);
+      setlist(res.todo);
     });
   };
 
   //삭제
-  const onDel = async e => {
-    TodoApiService.deleteTodo(word).then(res => {
-      console.log(word);
-      setWord({ id: 0 });
+  const onDelete = async e => {
+    const todoId = text;
+
+    TodoApiService.deleteTodo({ accessToken, todoId }).then(res => {
+      setText({ id: 0 });
     });
   };
-  if (word.id === 0) {
+  if (text.id === 0) {
     return null;
   }
 
@@ -111,7 +116,7 @@ const TodoItem = ({ list }) => {
             </button>
           )}
           {BtnValue && (
-            <button className="deleteBtn" onClick={onDel}>
+            <button className="deleteBtn" onClick={onDelete}>
               삭제
             </button>
           )}
