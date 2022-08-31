@@ -1,12 +1,14 @@
-import TodoForm from './TodoForm';
-import TodoItem from './TodoItem';
+import * as Styled from 'styles/todo/TodoList.styled';
+import TodoForm from 'components/todo/TodoForm';
+import TodoItem from 'components/todo/TodoItem';
 
 const TodoList = () => {
   return (
-    <div>
+    <Styled.Container>
+      <Styled.Title>Todo-List</Styled.Title>
       <TodoForm />
       <TodoItem />
-    </div>
+    </Styled.Container>
   );
 };
 
