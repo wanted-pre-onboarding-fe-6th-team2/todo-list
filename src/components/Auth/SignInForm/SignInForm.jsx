@@ -1,7 +1,7 @@
 import { useInput } from 'hooks/useInput';
 import * as Styled from './SignInForm.styled';
 
-const SignInForm = ({ submitHandler }) => {
+const SignInForm = () => {
   const [email, onChangeEmail, isValidEmail] = useInput({
     initialValue: '',
     minLength: 1,
@@ -15,8 +15,22 @@ const SignInForm = ({ submitHandler }) => {
 
   const isValidForm = isValidEmail && isValidPassword;
 
+  const handleSignIn = async (e, email, password) => {
+    e.preventDefault();
+    const signInResponse = await AuthApiService.signIn({ email, password });
+    if (signInResponse.status === 200) {
+      // 토큰 등록
+      localStorage.setItem('token', signInResponse.accessToken);
+      // 리다이렉트
+      //navigate('/todo');
+    } else if (signInResponse.status === 404) {
+      // 404 사용자 존재x
+      alert('존재하지 않는 사용자 입니다.');
+    }
+  };
+
   return (
-    <Styled.SignLayoutWrapper onSubmit={e => submitHandler(e, email, password)}>
+    <Styled.SignLayoutWrapper onSubmit={e => handleSignIn(e, email, password)}>
       <h3>로그인</h3>
       <Styled.InputWrapper>
         <Styled.Input type="text" value={email} onChange={onChangeEmail} />
