@@ -8,7 +8,7 @@ const Input = styled.input`
   font-size: 1.25rem;
   outline: none;
   border: none;
-  border-bottom: 1px solid indianred;
+  border-bottom: 1px solid #0064ff;
 `;
 
 const Button = styled.button`
@@ -17,14 +17,14 @@ const Button = styled.button`
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: 1rem;
-  background: indianred;
-  border: 1px solid indianred;
+  background: #1e90ff;
+  border: 1px solid #1e90ff;
   border-radius: 3px;
   color: white;
   font-weight: 600;
   cursor: pointer;
   :hover {
-    background: lightsalmon;
+    background: #0064ff;
   }
 `;
 

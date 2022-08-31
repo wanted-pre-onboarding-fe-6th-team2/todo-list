@@ -4,7 +4,7 @@ export const Todolist = styled.div`
   .show {
     display: flex;
     text-decoration: line-through;
-    text-decoration-color: indianred;
+    text-decoration-color: #0000ff;
   }
   ul {
     display: flex;
@@ -15,7 +15,7 @@ export const Todolist = styled.div`
   }
   .checkbox {
     vertical-align: middle;
-    accent-color: indianred;
+    accent-color: #1e3269;
   }
   .text {
     width: 400px;
@@ -43,22 +43,22 @@ export const Todolist = styled.div`
     cursor: pointer;
   }
   .viewBtn {
-    background-color: lightcoral;
+    background-color: #91d8fa;
     margin-right: 10px;
     :hover {
-      background-color: pink;
+      background-color: #1ea4ff;
     }
   }
   .cancleBtn {
-    background-color: orangered;
+    background-color: lightcoral;
     :hover {
-      background-color: lightcoral;
+      background-color: orangered;
     }
   }
   .deleteBtn {
-    background-color: tomato;
+    background-color: lightcoral;
     :hover {
-      background-color: salmon;
+      background-color: orangered;
     }
   }
 `;
