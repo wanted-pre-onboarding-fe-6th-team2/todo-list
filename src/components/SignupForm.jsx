@@ -1,14 +1,18 @@
-import React, { useState, useRef } from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-import * as Style from 'components/Signup.style';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import * as Style from 'components/SignupForm.style';
 import { signupValidator } from 'utils/validator';
 import AuthApiService from 'api/auth';
+import { ROUTES } from 'constants/route';
 
 const SignupForm = () => {
-  // const navigate = useNavigate();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
   // 회원가입 input validations
   const [validations, setValidations] = useState({
     isValidEmail: true,
@@ -26,28 +30,24 @@ const SignupForm = () => {
 
   // 회원가입 input 유효성 검사
   const handleChangeInputs = e => {
-    const inputs = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      confirmPassword: confirmPasswordRef.current.value,
-    };
-    setValidations(signupValidator(inputs));
+    const { value, name } = e.target;
+    setInputs(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    setValidations(signupValidator({ ...inputs, [name]: value }));
   };
 
   // 회원가입 버튼 클릭 로직
   const handleClickSignup = async e => {
     e.preventDefault();
-    const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
+    const { email, password } = inputs;
     try {
-      await AuthApiService.signUp(data);
+      await AuthApiService.signUp({ email, password });
       alert('회원가입이 완료되었습니다.');
-      // navigate('/login'); // 로그인 창으로 이동
+      navigate(ROUTES.SIGNIN); // 로그인 창으로 이동
     } catch (error) {
       alert(error.response.data.message);
-      throw new Error(error);
     }
   };
 
@@ -64,9 +64,9 @@ const SignupForm = () => {
         <Style.Input
           id="email"
           type="text"
+          name="email"
           placeholder="이메일을 입력하세요."
           onChange={handleChangeInputs}
-          ref={emailRef}
         />
         <Style.LabelBox>
           <Style.Label htmlFor="password">비밀번호</Style.Label>
@@ -77,9 +77,9 @@ const SignupForm = () => {
         <Style.Input
           id="password"
           type="password"
+          name="password"
           placeholder="8자 이상 비밀번호를 입력하세요."
           onChange={handleChangeInputs}
-          ref={passwordRef}
         />
         <Style.LabelBox>
           <Style.Label htmlFor="confirmPassword">비밀번호 확인</Style.Label>
@@ -90,9 +90,9 @@ const SignupForm = () => {
         <Style.Input
           id="confirmPassword"
           type="password"
+          name="confirmPassword"
           placeholder="위와 동일한 비밀번호를 입력해주세요."
           onChange={handleChangeInputs}
-          ref={confirmPasswordRef}
         />
         <Style.Button type="submit" disabled={isDisabled}>
           가입하기
@@ -100,7 +100,7 @@ const SignupForm = () => {
       </Style.Form>
       <Style.Text>
         아이디가 있으신가요?
-        {/* <Link to="/login">로그인하기</Link> */}
+        <Link to={ROUTES.SIGNIN}>로그인하기</Link>
       </Style.Text>
     </Style.Container>
   );
