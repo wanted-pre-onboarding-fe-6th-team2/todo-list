@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 // import { useNavigate, Link } from 'react-router-dom';
-import * as Style from './SignupStyle';
+import * as Style from 'components/Signup.style';
 import { signupValidator } from 'utils/validator';
 import AuthApiService from 'api/auth';
 
@@ -18,7 +18,7 @@ const SignupForm = () => {
   });
 
   // input 유효성 검사 만족하지 않을 경우, 회원가입 버튼 비활성화
-  const buttonDisabled =
+  const isDisabled =
     !validations.isValidEmail ||
     !validations.isValidPassword ||
     !validations.isValidConfirmPassword ||
@@ -64,7 +64,7 @@ const SignupForm = () => {
         <Style.Input
           id="email"
           type="text"
-          placeholder="email"
+          placeholder="이메일을 입력하세요."
           onChange={handleChangeInputs}
           ref={emailRef}
         />
@@ -77,7 +77,7 @@ const SignupForm = () => {
         <Style.Input
           id="password"
           type="password"
-          placeholder="password"
+          placeholder="8자 이상 비밀번호를 입력하세요."
           onChange={handleChangeInputs}
           ref={passwordRef}
         />
@@ -90,11 +90,11 @@ const SignupForm = () => {
         <Style.Input
           id="confirmPassword"
           type="password"
-          placeholder="confirmPassword"
+          placeholder="위와 동일한 비밀번호를 입력해주세요."
           onChange={handleChangeInputs}
           ref={confirmPasswordRef}
         />
-        <Style.Button type="submit" disabled={buttonDisabled}>
+        <Style.Button type="submit" disabled={isDisabled}>
           가입하기
         </Style.Button>
       </Style.Form>
