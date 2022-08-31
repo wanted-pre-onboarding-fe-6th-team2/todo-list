@@ -1,12 +1,10 @@
-import React, { useState, useRef } from 'react';
-import * as Styled from 'styles/todo/todo.styled';
-import TodoApiService from 'api/todos';
+import React, { useState } from 'react';
+import * as Styled from 'pages/Todos/Todos.styled';
+import todoApiService from 'api/todos';
 import { LOCALSTORAGE } from 'constants/localstorage';
 
 const TodoForm = ({ setTodos }) => {
   const [newTodo, setNewTodo] = useState('');
-
-  const inputRef = useRef();
 
   const accessToken = localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN) || '';
 
@@ -14,11 +12,14 @@ const TodoForm = ({ setTodos }) => {
     e.preventDefault();
 
     if (newTodo) {
-      TodoApiService.createTodo({ todo: newTodo, accessToken }).then(response => {
-        setTodos(prev => [...prev, response]);
-      });
+      todoApiService
+        .createTodo({ todo: newTodo, accessToken })
+        .then(response => {
+          setTodos(prev => [...prev, response]);
+        })
+        .catch(error => alert(error));
 
-      inputRef.current.value = '';
+      setNewTodo('');
     } else {
       alert('할 일을 입력해주세요.');
     }
@@ -28,7 +29,7 @@ const TodoForm = ({ setTodos }) => {
     <Styled.Form>
       <Styled.Input
         type="text"
-        ref={inputRef}
+        value={newTodo}
         placeholder="할 일을 작성해 주세요"
         onChange={e => setNewTodo(e.target.value)}
       />
