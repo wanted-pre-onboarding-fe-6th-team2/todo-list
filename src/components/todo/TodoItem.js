@@ -8,6 +8,8 @@ const TodoItem = ({ todo }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState('');
 
+  const handleEditMode = () => setIsEditMode(!isEditMode);
+
   const handleDelete = id => {
     TodoApiService.deleteTodo({ accessToken, todoId: id });
   };
@@ -22,13 +24,16 @@ const TodoItem = ({ todo }) => {
   };
 
   const handleEdit = todo => {
-    const newTodo = {
-      ...todo,
-      todo: editedTodo,
-    };
-
-    updateTodo(newTodo);
-    setIsEditMode(false);
+    if (editedTodo !== todo.todo) {
+      const newTodo = {
+        ...todo,
+        todo: editedTodo,
+      };
+      updateTodo(newTodo);
+      setIsEditMode(false);
+    } else {
+      alert('할 일을 수정해주세요.');
+    }
   };
 
   const updateTodo = todo => {
@@ -47,7 +52,7 @@ const TodoItem = ({ todo }) => {
           <Styled.Input defaultValue={todo.todo} onChange={e => setEditedTodo(e.target.value)} />
           <div>
             <Styled.Button onClick={() => handleEdit(todo)}>수정</Styled.Button>
-            <Styled.Button onClick={() => setIsEditMode(!isEditMode)}>취소</Styled.Button>
+            <Styled.Button onClick={handleEditMode}>취소</Styled.Button>
           </div>
         </>
       ) : (
@@ -55,7 +60,7 @@ const TodoItem = ({ todo }) => {
           <Styled.Paragraph iscompleted={todo.isCompleted}>{todo.todo}</Styled.Paragraph>
           <div>
             <Styled.Button onClick={() => handleComplete(todo)}>완료</Styled.Button>
-            <Styled.Button onClick={() => setIsEditMode(!isEditMode)}>수정</Styled.Button>
+            <Styled.Button onClick={handleEditMode}>수정</Styled.Button>
             <Styled.Button onClick={() => handleDelete(todo.id)}>삭제</Styled.Button>
           </div>
         </>
