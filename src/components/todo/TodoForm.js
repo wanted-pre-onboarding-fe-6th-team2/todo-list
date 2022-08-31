@@ -5,12 +5,13 @@ import TodoApiService from 'api/todos';
 const TodoForm = () => {
   const [newTodos, setNewTodos] = useState('');
 
-  const token = localStorage.getItem('token') || '';
+  const accessToken = localStorage.getItem('token') || '';
 
   const handleAddClick = e => {
     e.preventDefault();
 
-    newTodos && TodoApiService.createTodo({ todo: newTodos, accessToken: token });
+    newTodos && TodoApiService.createTodo({ todo: newTodos, accessToken });
+    setNewTodos('');
   };
 
   return (
