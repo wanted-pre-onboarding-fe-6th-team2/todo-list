@@ -8,9 +8,9 @@ const Todo = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token') || '';
+    const accessToken = localStorage.getItem('token') || '';
 
-    TodoApiService.getTodos({ accessToken: token }).then(response => setTodos(response));
+    TodoApiService.getTodos({ accessToken }).then(response => setTodos(response));
   }, [todos]);
 
   return (
