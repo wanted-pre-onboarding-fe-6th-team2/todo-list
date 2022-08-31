@@ -1,5 +1,6 @@
 import { useInput } from 'hooks/useInput';
 import * as Styled from './SignInForm.styled';
+import AuthApiService from 'api/auth';
 
 const SignInForm = () => {
   const [email, onChangeEmail, isValidEmail] = useInput({
