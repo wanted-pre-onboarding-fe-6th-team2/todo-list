@@ -3,15 +3,15 @@ import * as Styled from 'styles/todo/todo.styled';
 import TodoApiService from 'api/todos';
 
 const TodoForm = () => {
-  const [newTodos, setNewTodos] = useState('');
+  const [newTodo, setNewTodo] = useState('');
 
   const accessToken = localStorage.getItem('token') || '';
 
   const handleAddClick = e => {
     e.preventDefault();
 
-    newTodos && TodoApiService.createTodo({ todo: newTodos, accessToken });
-    setNewTodos('');
+    newTodo && TodoApiService.createTodo({ todo: newTodo, accessToken });
+    setNewTodo('');
   };
 
   return (
@@ -19,7 +19,7 @@ const TodoForm = () => {
       <Styled.Input
         type="text"
         placeholder="할 일을 작성해 주세요"
-        onChange={e => setNewTodos(e.target.value)}
+        onChange={e => setNewTodo(e.target.value)}
       />
       <Styled.Button onClick={handleAddClick}>추가</Styled.Button>
     </Styled.Form>
