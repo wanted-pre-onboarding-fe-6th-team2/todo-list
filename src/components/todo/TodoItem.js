@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-// import { useTodo } from 'hooks/useTodo';
 import * as Styled from 'styles/todo/todo.styled';
+import TodoApiService from 'api/todos';
 
 const TodoItem = ({ todo }) => {
-  // const [updateTodo, deleteTodo] = useTodo();
-
+  const token = localStorage.getItem('token') || '';
   const [editMode, setEditMode] = useState(false);
+
+  const handleDelete = id => {
+    TodoApiService.deleteTodo({ accessToken: token, todoId: id });
+  };
 
   return (
     <Styled.Li key={todo.id}>
@@ -23,7 +26,7 @@ const TodoItem = ({ todo }) => {
           <div>
             <Styled.Button>완료</Styled.Button>
             <Styled.Button onClick={() => setEditMode(!editMode)}>수정</Styled.Button>
-            <Styled.Button>삭제</Styled.Button>
+            <Styled.Button onClick={() => handleDelete(todo.id)}>삭제</Styled.Button>
           </div>
         </>
       )}
