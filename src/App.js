@@ -1,6 +1,6 @@
 import { Global } from '@emotion/react';
 import { ROUTES } from 'constants/route';
-import { LOCALSTORAGE } from 'constants/token';
+import { LOCALSTORAGE } from 'constants/localstorage';
 import Home from 'pages/Home/Home';
 import Signin from 'pages/Signin/Signin';
 import Signup from 'pages/Signup/Signup';
