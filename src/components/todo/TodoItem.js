@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import * as Styled from 'styles/todo/todo.styled';
 import TodoApiService from 'api/todos';
+import { LOCALSTORAGE } from 'constants/localstorage';
 
 const TodoItem = ({ todo }) => {
-  const accessToken = localStorage.getItem('token') || '';
+  const accessToken = localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN) || '';
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [editedTodo, setEditedTodo] = useState('');
