@@ -22,11 +22,16 @@ const ErrorMessage = styled.p`
 const Submit = styled.input`
   height: 45px;
   width: 100%;
-  background: ${props => (props.disabled ? '#ddd' : '#000')};
-  color: ${props => (props.disabled ? '#888' : '#fff')};
+  background: #000;
+  color: #fff;
   font-size: 16px;
   border: 0;
-  cursor: ${props => (props.disabled ? 'initial' : 'pointer')};
+  cursor: pointer;
+  &: disabled {
+    cursor: initial;
+    color: #888;
+    background: #ddd;
+  }
 `;
 
 export { Form, Row, Label, Input, ErrorMessage, Submit };
