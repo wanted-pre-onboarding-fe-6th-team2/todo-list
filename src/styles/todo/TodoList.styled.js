@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Container = styled.main`
-  background: lightgrey;
+  background: #e1f6fa;
   width: 600px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin: 0 auto;
@@ -19,7 +19,12 @@ const Title = styled.div`
 
 const FormWrapper = styled.section`
   padding: 1rem;
-  border-bottom: 1px solid indianred;
+  border-bottom: 3px solid #288cff;
 `;
 
-export { Container, Title, FormWrapper };
+const TodoItemWrapper = styled.section`
+  padding-bottom: 3px;
+  min-height: 5rem;
+`;
+
+export { Container, Title, FormWrapper, TodoItemWrapper };
