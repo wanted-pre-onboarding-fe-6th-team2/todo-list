@@ -13,6 +13,13 @@ export const validatePassword = (password, confirmPassword) => {
   return password === confirmPassword ? true : false;
 };
 
+export const loginValidator = ({ email, password }) => {
+  return {
+    isValidEmail: validateEmail(email),
+    isValidPassword: hasLength(password, 8),
+  };
+};
+
 export const signupValidator = ({ email, password, confirmPassword }) => {
   return {
     isValidEmail: email.length === 0 || validateEmail(email),
