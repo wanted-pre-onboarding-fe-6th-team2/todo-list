@@ -1,12 +1,12 @@
 import SignInForm from 'components/Auth/SignInForm/SignInForm';
-import { Container } from './SignIn.styled';
+import PageContainer from 'components/PageContainer';
 
-const SignInPage = () => {
+const Signin = () => {
   return (
-    <Container>
+    <PageContainer>
       <SignInForm />
-    </Container>
+    </PageContainer>
   );
 };
 
-export default SignInPage;
+export default Signin;
