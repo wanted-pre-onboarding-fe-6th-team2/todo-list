@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import AuthApiService from 'api/auth';
-import { useNavigate } from 'react-router-dom';
+// import AuthApiService from 'api/auth';
+// import { useNavigate } from 'react-router-dom';
 import * as Styled from 'styles/SignUp/SignUpForm.styled';
 
 export default function SignUpForm() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const [validation, setValidation] = useState({ email: false, password: false });
   const emailRegex = /([\w-.]+)@([\w-.]+)/;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // 가입 정보 입력
   const handleSignUpInfo = e => {
@@ -25,8 +25,9 @@ export default function SignUpForm() {
   const handleSignUp = async e => {
     e.preventDefault();
     try {
-      await AuthApiService.signUp(userInfo);
-      navigate('/SignIn');
+      // await AuthApiService.signUp(userInfo);
+      alert('회원가입이 완료되었습니다.');
+      // navigate('/SignIn');
     } catch (error) {
       throw new Error(error);
     }

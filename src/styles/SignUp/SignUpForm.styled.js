@@ -30,7 +30,7 @@ const Submit = styled.input`
   &: disabled {
     cursor: initial;
     color: #888;
-    background: #ddd;
+    background: #dddddd;
   }
 `;
 
