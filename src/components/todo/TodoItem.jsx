@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import * as Styled from 'styles/todo/todo.styled';
-import TodoApiService from 'api/todos';
+import * as Styled from 'pages/Todos/Todos.styled';
+import todoApiService from 'api/todos';
 import { LOCALSTORAGE } from 'constants/localstorage';
 
 const TodoItem = ({ todo }) => {
@@ -16,7 +16,7 @@ const TodoItem = ({ todo }) => {
     const isDeleteConfirm = window.confirm('삭제하시겠습니까?');
 
     if (isDeleteConfirm) {
-      TodoApiService.deleteTodo({ accessToken, todoId: id });
+      todoApiService.deleteTodo({ accessToken, todoId: id });
       setCurrentTodo(prev => {
         return { ...prev, id: 'deleted' };
       });
@@ -24,7 +24,7 @@ const TodoItem = ({ todo }) => {
   };
 
   const updateTodo = todo => {
-    TodoApiService.updateTodo({
+    todoApiService.updateTodo({
       accessToken,
       isCompleted: todo.isCompleted,
       todo: todo.todo,
