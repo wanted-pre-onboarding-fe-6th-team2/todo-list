@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import SignUp from 'pages/SignUp';
+import SignUp from 'pages/Signup/SignUp';
 import resetCss from 'styles/global';
 
 const App = () => (

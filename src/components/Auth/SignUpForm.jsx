@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import * as Styled from 'styles/auth/signUp';
+import * as Styled from 'styles/SignUp/SignUpForm.styled';
 
 export default function SignUpForm() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const [validation, setValidation] = useState({ email: false, password: false });
+  const emailRegex = /([\w-.]+)@([\w-.]+)/;
 
   // 가입 정보 입력
-  const handleAuth = e => {
+  const handleSignUpInfo = e => {
     const { id, value } = e.target;
     setUserInfo(prev => ({ ...prev, [id]: value }));
   };
 
   // 가입정보 유효성 검사
   useEffect(() => {
-    const regex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    setValidation(prev => ({ ...prev, email: regex.test(userInfo.email) }));
+    setValidation(prev => ({ ...prev, email: emailRegex.test(userInfo.email) }));
     setValidation(prev => ({ ...prev, password: userInfo.password.length > 7 }));
   }, [userInfo]);
 
   // api 호출
-  const handleSubmit = async e => {
+  const handleSignUp = async e => {
     e.preventDefault();
     try {
       // await AuthApiService.signUp(userInfo);
+      // navigate('/SignIn');
     } catch (error) {
       throw new Error(error);
     }
   };
 
   return (
-    <Styled.Form onSubmit={handleSubmit}>
+    <Styled.Form onSubmit={handleSignUp}>
       <Styled.Row>
         <Styled.Label htmlFor="email">이메일</Styled.Label>
         <Styled.Input
@@ -38,7 +38,7 @@ export default function SignUpForm() {
           id="email"
           name="email"
           value={userInfo.email}
-          onChange={handleAuth}
+          onChange={handleSignUpInfo}
         />
       </Styled.Row>
       <Styled.ErrorMessage>
@@ -51,7 +51,7 @@ export default function SignUpForm() {
           id="password"
           name="password"
           value={userInfo.password}
-          onChange={handleAuth}
+          onChange={handleSignUpInfo}
         />
       </Styled.Row>
       <Styled.ErrorMessage>{!validation.password && `8자 이상 입력해주세요..`}</Styled.ErrorMessage>
