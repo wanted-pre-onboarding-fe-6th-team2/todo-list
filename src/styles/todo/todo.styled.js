@@ -64,6 +64,12 @@ const Li = styled.li`
 
 const Paragraph = styled.p`
   font-size: 1em;
+  width: 75%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   text-decoration: ${props => (props.iscompleted ? 'line-through' : 'none')};
   color: ${props => (props.iscompleted ? '#aaa' : '#000')};
 `;
