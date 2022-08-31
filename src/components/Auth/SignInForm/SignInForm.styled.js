@@ -50,14 +50,12 @@ const SubmitBtn = styled.button`
   margin-bottom: 16px;
   font-size: 18px;
   cursor: pointer;
-  ${props =>
-    !props.isAllow &&
-    css`
-      &:hover {
-        cursor: not-allowed;
-      }
-      background-color: gray;
-    `}
+  &:disabled {
+    &:hover {
+      cursor: not-allowed;
+    }
+    background-color: gray;
+  }
 `;
 
 export { SignLayoutWrapper, InputWrapper, Input, SubmitBtn };
