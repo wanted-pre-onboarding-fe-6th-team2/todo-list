@@ -13,10 +13,14 @@ const TodoItem = ({ todo }) => {
   const handleToggleEditMode = () => setIsEditMode(!isEditMode);
 
   const handleDeleteTodo = id => {
-    TodoApiService.deleteTodo({ accessToken, todoId: id });
-    setCurrentTodo(prev => {
-      return { ...prev, id: 'deleted' };
-    });
+    const isDeleteConfirm = window.confirm('삭제하시겠습니까?');
+
+    if (isDeleteConfirm) {
+      TodoApiService.deleteTodo({ accessToken, todoId: id });
+      setCurrentTodo(prev => {
+        return { ...prev, id: 'deleted' };
+      });
+    }
   };
 
   const updateTodo = todo => {
@@ -39,7 +43,7 @@ const TodoItem = ({ todo }) => {
   };
 
   const handleEditTodo = todo => {
-    if (editedTodo !== todo.todo) {
+    if (editedTodo && editedTodo !== todo.todo) {
       const newTodo = {
         ...todo,
         todo: editedTodo,
