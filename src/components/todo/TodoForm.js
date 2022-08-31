@@ -32,7 +32,7 @@ const TodoForm = ({ setTodos }) => {
         placeholder="할 일을 작성해 주세요"
         onChange={e => setNewTodo(e.target.value)}
       />
-      <Styled.Button onClick={handleCreateTodo}>추가</Styled.Button>
+      <Styled.CreateButton onClick={handleCreateTodo}>추가</Styled.CreateButton>
     </Styled.Form>
   );
 };
