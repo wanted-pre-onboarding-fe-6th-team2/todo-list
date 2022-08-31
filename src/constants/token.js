@@ -1,3 +1,3 @@
-export const TOKEN = {
-  KEY: 'token',
+export const LOCALSTORAGE = {
+  ACCESS_TOKEN: 'token',
 };
