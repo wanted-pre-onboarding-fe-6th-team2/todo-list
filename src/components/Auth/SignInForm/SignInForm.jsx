@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as Styled from './SignInForm.styled';
+import * as Styled from 'components/SignupForm.style';
 import AuthApiService from 'api/auth';
 import { loginValidator } from 'utils/validator';
 import { ROUTES } from 'constants/route';
@@ -20,7 +20,7 @@ const SignInForm = () => {
   });
 
   // input 유효성 검사 만족하지 않을 경우, 로그인 버튼 비활성화
-  const buttonDisabled = !validations.isValidEmail || !validations.isValidPassword;
+  const isDisabled = !validations.isValidEmail || !validations.isValidPassword;
 
   // 로그인 input 유효성 검사
   const handleChangeInputs = e => {
@@ -48,9 +48,15 @@ const SignInForm = () => {
   };
 
   return (
-    <Styled.SignLayoutWrapper onSubmit={e => handleSignIn(e)}>
-      <h3>로그인</h3>
-      <Styled.InputWrapper>
+    <Styled.Container>
+      <Styled.Title>회원가입</Styled.Title>
+      <Styled.Form onSubmit={e => handleSignIn(e)}>
+        <Styled.LabelBox>
+          <Styled.Label htmlFor="email">이메일</Styled.Label>
+          {!validations.isValidEmail && inputs.email && (
+            <Styled.ValidationText>올바른 형식의 이메일을 입력하세요.</Styled.ValidationText>
+          )}
+        </Styled.LabelBox>
         <Styled.Input
           id="email"
           type="text"
@@ -58,9 +64,12 @@ const SignInForm = () => {
           placeholder="이메일을 입력하세요."
           onChange={handleChangeInputs}
         />
-        {!validations.isValidEmail && inputs.email && <p>올바른 형식의 이메일을 입력하세요.</p>}
-      </Styled.InputWrapper>
-      <Styled.InputWrapper>
+        <Styled.LabelBox>
+          <Styled.Label htmlFor="confirmPassword">비밀번호</Styled.Label>
+          {!validations.isValidPassword && inputs.password && (
+            <Styled.ValidationText>8자 이상 비밀번호를 입력해주세요.</Styled.ValidationText>
+          )}
+        </Styled.LabelBox>
         <Styled.Input
           id="password"
           type="password"
@@ -68,15 +77,15 @@ const SignInForm = () => {
           placeholder="8자 이상 비밀번호를 입력하세요."
           onChange={handleChangeInputs}
         />
-        {!validations.isValidPassword && inputs.password && (
-          <p>8자 이상 비밀번호를 입력해주세요.</p>
-        )}
-      </Styled.InputWrapper>
-      <Styled.SubmitBtn type="submit" disabled={buttonDisabled}>
-        로그인
-      </Styled.SubmitBtn>
-      <Link to={ROUTES.SIGNUP}>회원가입하기</Link>
-    </Styled.SignLayoutWrapper>
+        <Styled.Button type="submit" disabled={isDisabled}>
+          로그인
+        </Styled.Button>
+      </Styled.Form>
+      <Styled.Text>
+        아이디가 있으신가요?
+        <Link to={ROUTES.SIGNUP}>회원가입하기</Link>
+      </Styled.Text>
+    </Styled.Container>
   );
 };
 
