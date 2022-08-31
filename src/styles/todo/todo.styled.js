@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
 const Container = styled.section`
-  width: 50%;
+  width: 60%;
   margin: 2em auto;
 
   & > h1 {
     font-size: 2em;
+    font-weight: bold;
     text-align: center;
     margin-bottom: 1em;
+    color: #9946e9;
   }
 `;
 
@@ -22,27 +24,51 @@ const Form = styled.form`
 
 const Input = styled.input`
   width: 70%;
-  height: 2em;
+  height: 2.5em;
+  padding: 0 0.5em;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #9946e9;
   font-weight: bold;
   box-sizing: border-box;
 
   &:focus {
-    background-color: #ccc;
+    background-color: #9946e9;
     outline: none;
   }
 
   &::placeholder {
-    font-weight: lighter;
+    font-weight: 300;
+  }
+`;
+
+const EditInput = styled.input`
+  width: 70%;
+  border: none;
+  border-bottom: 2px solid #9946e9;
+  font-weight: bold;
+  box-sizing: border-box;
+
+  &:focus {
+    background-color: #9946e9;
+    outline: none;
+  }
+
+  &::placeholder {
+    font-weight: 300;
   }
 `;
 
 const Button = styled.button`
   height: 2em;
-  background-color: #ccc;
+  background-color: #fff;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #9946e9;
+  color: #9946e9;
+  font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 0.5em;
+  }
 `;
 
 const Ul = styled.ul`
@@ -63,8 +89,10 @@ const TodoItem = styled.li`
 `;
 
 const Paragraph = styled.p`
-  font-size: 1em;
+  padding-left: 0.5em;
+  font-size: 0.9em;
   width: 75%;
+  height: 100%;
 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -74,4 +102,4 @@ const Paragraph = styled.p`
   color: ${props => (props.iscompleted ? '#aaa' : '#000')};
 `;
 
-export { Container, Form, Input, Button, Ul, TodoItem, Paragraph };
+export { Container, Form, Input, EditInput, Button, Ul, TodoItem, Paragraph };
