@@ -11,12 +11,12 @@ const Todos = () => {
     const accessToken = localStorage.getItem('token') || '';
 
     TodoApiService.getTodos({ accessToken }).then(response => setTodos(response));
-  }, [todos]);
+  }, []);
 
   return (
     <Styled.Container>
       <h1>Todo</h1>
-      <TodoForm />
+      <TodoForm setTodos={setTodos} />
       <TodoList todos={todos} />
     </Styled.Container>
   );
