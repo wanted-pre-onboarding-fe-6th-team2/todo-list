@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Styled from 'pages/Todos/Todos.styled';
+import * as Styled from 'styles/todo/todo.styled';
 import TodoItem from './TodoItem';
 
 const TodoList = ({ todos }) => {
