@@ -38,10 +38,13 @@ const SignInForm = () => {
     try {
       const signInResponse = await authApiService.signIn({ email, password });
       // 토큰 등록
-      localStorage.setItem(LOCALSTORAGE.ACCESS_TOKEN, signInResponse.access_token);
+
+      const { access_token } = signInResponse;
+
+      localStorage.setItem(LOCALSTORAGE.ACCESS_TOKEN, access_token);
       // 리다이렉트
       alert('로그인 되었습니다.');
-      navigate(0);
+      navigate(ROUTES.TODOS);
     } catch (error) {
       alert(error.response.data.message);
     }
