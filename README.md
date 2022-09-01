@@ -16,42 +16,44 @@
 
 ## 폴더구조
 
-├── App.js  
-├── api  
-│ ├── auth.js  
-│ ├── core.js  
-│ └── todos.js  
-├── components  
-│ ├── PageContainer  
-│ │ ├── PageContainer.jsx  
-│ │ └── PageContainer.styled.js  
-│ ├── SigninForm  
-│ │ └── SigninForm.jsx  
-│ ├── SignupForm  
-│ │ ├── SignupForm.jsx  
-│ │ └── SignupForm.styled.js  
-│ ├── TodoForm  
-│ │ └── TodoForm.jsx  
-│ ├── TodoItem  
-│ │ └── TodoItem.jsx  
-│ └── TodoList  
-│ └── TodoList.jsx  
-├── constants  
-│ ├── localstorage.js  
-│ └── route.js  
-├── index.js  
-├── pages  
-│ ├── Signin  
-│ │ └── Signin.jsx  
-│ ├── Signup  
-│ │ └── Signup.js  
-│ └── Todos  
-│ ├── Todos.jsx  
-│ └── Todos.styled.js  
-├── styles  
-│ └── global.js  
-└── utils  
+```
+├── App.js
+├── api
+│ ├── auth.js
+│ ├── core.js
+│ └── todos.js
+├── components
+│ ├── PageContainer
+│ │ ├── PageContainer.jsx
+│ │ └── PageContainer.styled.js
+│ ├── SigninForm
+│ │ └── SigninForm.jsx
+│ ├── SignupForm
+│ │ ├── SignupForm.jsx
+│ │ └── SignupForm.styled.js
+│ ├── TodoForm
+│ │ └── TodoForm.jsx
+│ ├── TodoItem
+│ │ └── TodoItem.jsx
+│ └── TodoList
+│ └── TodoList.jsx
+├── constants
+│ ├── localstorage.js
+│ └── route.js
+├── index.js
+├── pages
+│ ├── Signin
+│ │ └── Signin.jsx
+│ ├── Signup
+│ │ └── Signup.js
+│ └── Todos
+│ ├── Todos.jsx
+│ └── Todos.styled.js
+├── styles
+│ └── global.js
+└── utils
 └── validator.js
+```
 
 ## Best-Practice
 
