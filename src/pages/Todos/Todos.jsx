@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as Styled from 'pages/Todos/Todos.styled';
-import TodoList from 'components/todo/TodoList';
-import TodoForm from 'components/todo/TodoForm';
+import TodoList from 'components/TodoList';
+import TodoForm from 'components/TodoForm';
 import todoApiService from 'api/todos';
 import { LOCALSTORAGE } from 'constants/localstorage';
 import { useNavigate } from 'react-router-dom';
