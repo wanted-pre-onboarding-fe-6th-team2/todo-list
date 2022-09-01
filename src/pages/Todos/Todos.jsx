@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import * as Styled from 'styles/todo/todo.styled';
+import * as Styled from 'pages/Todos/Todos.styled';
 import TodoList from 'components/todo/TodoList';
 import TodoForm from 'components/todo/TodoForm';
-import TodoApiService from 'api/todos';
+import todoApiService from 'api/todos';
 import { LOCALSTORAGE } from 'constants/localstorage';
 
 const Todos = () => {
@@ -11,7 +11,7 @@ const Todos = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN) || '';
 
-    TodoApiService.getTodos({ accessToken }).then(response => setTodos(response));
+    todoApiService.getTodos({ accessToken }).then(response => setTodos(response));
   }, []);
 
   return (
