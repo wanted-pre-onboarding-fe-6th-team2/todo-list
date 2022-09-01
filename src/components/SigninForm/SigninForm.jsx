@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as Styled from 'components/SignupForm.style';
+import * as Styled from 'components/SignupForm/SignupForm.styled';
 import authApiService from 'api/auth';
 import { loginValidator } from 'utils/validator';
 import { ROUTES } from 'constants/route';
 import { LOCALSTORAGE } from 'constants/localstorage';
 
-const SignInForm = () => {
+const SigninForm = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
@@ -38,10 +38,13 @@ const SignInForm = () => {
     try {
       const signInResponse = await authApiService.signIn({ email, password });
       // 토큰 등록
-      localStorage.setItem(LOCALSTORAGE.ACCESS_TOKEN, signInResponse.access_token);
+
+      const { access_token } = signInResponse;
+
+      localStorage.setItem(LOCALSTORAGE.ACCESS_TOKEN, access_token);
       // 리다이렉트
       alert('로그인 되었습니다.');
-      navigate(0);
+      navigate(ROUTES.TODOS);
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -89,4 +92,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SigninForm;

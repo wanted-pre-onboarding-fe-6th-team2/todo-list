@@ -17,18 +17,9 @@ const App = () => {
           path={ROUTES.HOME}
           element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Navigate to={ROUTES.SIGNIN} />}
         />
-        <Route
-          path={ROUTES.TODOS}
-          element={hasToken ? <Todos /> : <Navigate to={ROUTES.SIGNIN} />}
-        />
-        <Route
-          path={ROUTES.SIGNIN}
-          element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Signin />}
-        />
-        <Route
-          path={ROUTES.SIGNUP}
-          element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Signup />}
-        />
+        <Route path={ROUTES.TODOS} element={<Todos />} />
+        <Route path={ROUTES.SIGNIN} element={<Signin />} />
+        <Route path={ROUTES.SIGNUP} element={<Signup />} />
       </Routes>
     </div>
   );

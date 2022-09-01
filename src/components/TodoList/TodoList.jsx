@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Styled from 'pages/Todos/Todos.styled';
-import TodoItem from './TodoItem';
+import TodoItem from 'components/TodoItem/TodoItem';
 
 const TodoList = ({ todos }) => {
   return (

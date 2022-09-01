@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import * as Styled from 'pages/Todos/Todos.styled';
-import TodoList from 'components/todo/TodoList';
-import TodoForm from 'components/todo/TodoForm';
+import TodoList from 'components/TodoList/TodoList';
+import TodoForm from 'components/TodoForm/TodoForm';
 import todoApiService from 'api/todos';
 import { LOCALSTORAGE } from 'constants/localstorage';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from 'constants/route';
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const accessToken = localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN) || '';
 
+    if (!accessToken) {
+      navigate(ROUTES.SIGNIN);
+      return;
+    }
+
     todoApiService.getTodos({ accessToken }).then(response => setTodos(response));
-  }, []);
+  }, [navigate]);
 
   return (
     <Styled.Container>
