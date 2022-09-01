@@ -49,7 +49,7 @@ const SignInForm = () => {
 
   return (
     <Styled.Container>
-      <Styled.Title>회원가입</Styled.Title>
+      <Styled.Title>로그인</Styled.Title>
       <Styled.Form onSubmit={handleSignIn}>
         <Styled.LabelBox>
           <Styled.Label htmlFor="email">이메일</Styled.Label>
