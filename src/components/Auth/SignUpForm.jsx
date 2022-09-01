@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import * as Styled from 'styles/SignUp/SignUpForm.styled';
 
+const emailRegex = /([\w-.]+)@([\w-.]+)/;
+
 export default function SignUpForm() {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const [validation, setValidation] = useState({ email: false, password: false });
-  const emailRegex = /([\w-.]+)@([\w-.]+)/;
   // const navigate = useNavigate();
 
   // 가입 정보 입력
@@ -29,12 +30,12 @@ export default function SignUpForm() {
       alert('회원가입이 완료되었습니다.');
       // navigate('/SignIn');
     } catch (error) {
-      throw new Error(error);
+      alert(error.message);
     }
   };
 
   return (
-    <Styled.Form onSubmit={handleSignUp}>
+    <form onSubmit={handleSignUp}>
       <Styled.Row>
         <Styled.Label htmlFor="email">이메일</Styled.Label>
         <Styled.Input
@@ -45,9 +46,11 @@ export default function SignUpForm() {
           onChange={handleSignUpInfo}
         />
       </Styled.Row>
-      <Styled.ErrorMessage>
-        {!validation.email && `@를 포함한 형식으로 작성해주세요.`}
-      </Styled.ErrorMessage>
+
+      {!validation.email && (
+        <Styled.ErrorMessage>@를 포함한 형식으로 작성해주세요.</Styled.ErrorMessage>
+      )}
+
       <Styled.Row>
         <Styled.Label htmlFor="password">비밀번호</Styled.Label>
         <Styled.Input
@@ -58,7 +61,7 @@ export default function SignUpForm() {
           onChange={handleSignUpInfo}
         />
       </Styled.Row>
-      <Styled.ErrorMessage>{!validation.password && `8자 이상 입력해주세요..`}</Styled.ErrorMessage>
+      {!validation.password && <Styled.ErrorMessage>8자 이상 입력해주세요..</Styled.ErrorMessage>}
       <Styled.Submit
         type="submit"
         id="signupBtn"
@@ -66,6 +69,6 @@ export default function SignUpForm() {
         value="회원가입"
         disabled={!(validation.email && validation.password)}
       />
-    </Styled.Form>
+    </form>
   );
 }

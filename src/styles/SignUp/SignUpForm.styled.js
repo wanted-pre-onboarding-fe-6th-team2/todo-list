@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-const Form = styled.form``;
 const Row = styled.div`
   display: flex;
   margin-bottom: 10px;
@@ -34,4 +33,4 @@ const Submit = styled.input`
   }
 `;
 
-export { Form, Row, Label, Input, ErrorMessage, Submit };
+export { Row, Label, Input, ErrorMessage, Submit };
