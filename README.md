@@ -12,43 +12,44 @@
 
 ## 폴더 구조
 
-**src/api**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| `auth` | 로그인, 회원가입 관련 api |
-| `core` | axios request, response, error |
-| `todos` | 투두 관련 api |
+├── App.js
+├── api
+│ ├── auth.js
+│ ├── core.js
+│ └── todos.js
+├── components
+│ ├── PageContainer
+│ │ ├── PageContainer.jsx
+│ │ └── PageContainer.styled.js
+│ ├── SigninForm
+│ │ └── SigninForm.jsx
+│ ├── SignupForm
+│ │ ├── SignupForm.jsx
+│ │ └── SignupForm.styled.js
+│ ├── TodoForm
+│ │ └── TodoForm.jsx
+│ ├── TodoItem
+│ │ └── TodoItem.jsx
+│ └── TodoList
+│ └── TodoList.jsx
+├── constants
+│ ├── localstorage.js
+│ └── route.js
+├── index.js
+├── pages
+│ ├── Signin
+│ │ └── Signin.jsx
+│ ├── Signup
+│ │ └── Signup.js
+│ └── Todos
+│ ├── Todos.jsx
+│ └── Todos.styled.js
+├── styles
+│ └── global.js
+└── utils
+└── validator.js
 
-**src/components**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| `PageContainer` | 회원가입 컴포넌트의 컨테이너 |
-| `SignupForm` | 회원가입 컴포넌트 |
-
-**src/constants**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| `localstorage` | 로컬스토리지의 key값 상수화 |
-| `route` | 라우터 경로 상수화 |
-
-**src/pages**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| Signin/`Signin` | 로그인 페이지 |
-| Signup/`Signup` | 회원가입 페이지 |
-| Todos/`Todos` | 투두 리스트 페이지 |
-
-**src/utils**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| `validator` | form 데이터의 유효성 검사 |
-
-**src/**
-| 함수 | 역할 |
-|---------------------|--------------------------------|
-| `App` | 라우터 구현 |
-
-## Best Practice
+## Best-Practice
 
 ### Router(`src/App`)
 
@@ -71,12 +72,12 @@
 - useState를 이용해서 회원가입 inputs, validations 상태 관리
 - 회원가입 input 유효성 검사 로직을 util 함수로 분리
 - 회원가입 버튼 disabled & 유효성 검사 문구를 이용하여 Validation UI/UX 구현
-- 회원가입 버튼 클릭 시, Api 콜 호출을 통해 회원가입 처리
+- 회원가입 버튼 클릭 시, api 호출을 통해 회원가입 처리
 
 **이유**
 
 - 회원가입 form의 input 상태 값 변경에 따른 유효성 검사 문구 노출을 위해 useState를 이용하여 관리할 수 있도록 하였습니다.
-- 로그인, 회원가입 시 동일하게 진행되는 유효성 검사에 대한 코드 중복을 피하고 관심사를 분리를 위해 util 함수를 생성하여 관리하게 되었습니다.
+- 로그인, 회원가입 시 동일하게 진행되는 유효성 검사에 대한 코드 중복을 피하고 관심사를 분리하기 위해 util 함수를 생성하여 관리하게 되었습니다.
 - 코딩 컨벤션에 따른 변수명을 작성하여 코드 통일성을 높이고 직관적인 네이밍으로 작성하여 가독성을 높일 수 있도록 하였습니다.
 
 ### Todo
@@ -89,7 +90,7 @@
 **이유**
 
 - 논리적인 단위로 컴포넌트를 분리하기 위해 역할에 따라 컴포넌트를 나누었습니다. 새로 추가하는 Create, 기존의 Todo를 가져오는 Read, 기존의 Todo를 수정하는 Update와 Delete를 하나의 컴포넌트로 구분했습니다.
-- # 전역 상태 관리 라이브러리를 사용하지 않고, `props`와 `state`를 통해 상태 관리를 하여 렌더링을 구현했습니다.
+- 전역 상태 관리 라이브러리를 사용하지 않고, `props`와 `state`를 통해 상태 관리를 하여 렌더링을 구현했습니다.
 
 ## Git/Github
 
