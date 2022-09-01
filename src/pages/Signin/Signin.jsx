@@ -1,5 +1,5 @@
-import SignInForm from 'components//SignInForm';
-import PageContainer from 'components/PageContainer';
+import SignInForm from 'components/SigninForm/SigninForm';
+import PageContainer from 'components/PageContainer/PageContainer';
 import { LOCALSTORAGE } from 'constants/localstorage';
 import { ROUTES } from 'constants/route';
 import { useEffect } from 'react';

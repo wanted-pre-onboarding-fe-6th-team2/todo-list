@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as Styled from 'components/SignupForm.style';
+import * as Styled from 'components/SignupForm/SignupForm.styled';
 import authApiService from 'api/auth';
 import { loginValidator } from 'utils/validator';
 import { ROUTES } from 'constants/route';
 import { LOCALSTORAGE } from 'constants/localstorage';
 
-const SignInForm = () => {
+const SigninForm = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: '',
@@ -92,4 +92,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SigninForm;

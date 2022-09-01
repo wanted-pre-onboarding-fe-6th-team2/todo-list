@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import SignupForm from 'components/SignupForm';
-import PageContainer from 'components/PageContainer';
+import SignupForm from 'components/SignupForm/SignupForm';
+import PageContainer from 'components/PageContainer/PageContainer';
 import { useNavigate } from 'react-router-dom';
 import { LOCALSTORAGE } from 'constants/localstorage';
 import { ROUTES } from 'constants/route';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import * as Style from 'components/SignupForm.style';
+import * as Styled from 'components/SignupForm/SignupForm.styled';
 import { signupValidator } from 'utils/validator';
 import AuthApiService from 'api/auth';
 import { ROUTES } from 'constants/route';
@@ -52,57 +52,57 @@ const SignupForm = () => {
   };
 
   return (
-    <Style.Container>
-      <Style.Title>회원가입</Style.Title>
-      <Style.Form onSubmit={e => handleClickSignup(e)}>
-        <Style.LabelBox>
-          <Style.Label htmlFor="email">이메일</Style.Label>
+    <Styled.Container>
+      <Styled.Title>회원가입</Styled.Title>
+      <Styled.Form onSubmit={e => handleClickSignup(e)}>
+        <Styled.LabelBox>
+          <Styled.Label htmlFor="email">이메일</Styled.Label>
           {!validations.isValidEmail && (
-            <Style.ValidationText>올바른 형식의 이메일을 입력하세요.</Style.ValidationText>
+            <Styled.ValidationText>올바른 형식의 이메일을 입력하세요.</Styled.ValidationText>
           )}
-        </Style.LabelBox>
-        <Style.Input
+        </Styled.LabelBox>
+        <Styled.Input
           id="email"
           type="text"
           name="email"
           placeholder="이메일을 입력하세요."
           onChange={handleChangeInputs}
         />
-        <Style.LabelBox>
-          <Style.Label htmlFor="password">비밀번호</Style.Label>
+        <Styled.LabelBox>
+          <Styled.Label htmlFor="password">비밀번호</Styled.Label>
           {!validations.isValidPassword && (
-            <Style.ValidationText>8자 이상 비밀번호를 입력해주세요.</Style.ValidationText>
+            <Styled.ValidationText>8자 이상 비밀번호를 입력해주세요.</Styled.ValidationText>
           )}
-        </Style.LabelBox>
-        <Style.Input
+        </Styled.LabelBox>
+        <Styled.Input
           id="password"
           type="password"
           name="password"
           placeholder="8자 이상 비밀번호를 입력하세요."
           onChange={handleChangeInputs}
         />
-        <Style.LabelBox>
-          <Style.Label htmlFor="confirmPassword">비밀번호 확인</Style.Label>
+        <Styled.LabelBox>
+          <Styled.Label htmlFor="confirmPassword">비밀번호 확인</Styled.Label>
           {!validations.isSamePassword && (
-            <Style.ValidationText>비밀번호가 일치하지 않습니다.</Style.ValidationText>
+            <Styled.ValidationText>비밀번호가 일치하지 않습니다.</Styled.ValidationText>
           )}
-        </Style.LabelBox>
-        <Style.Input
+        </Styled.LabelBox>
+        <Styled.Input
           id="confirmPassword"
           type="password"
           name="confirmPassword"
           placeholder="위와 동일한 비밀번호를 입력해주세요."
           onChange={handleChangeInputs}
         />
-        <Style.Button type="submit" disabled={isDisabled}>
+        <Styled.Button type="submit" disabled={isDisabled}>
           가입하기
-        </Style.Button>
-      </Style.Form>
-      <Style.Text>
+        </Styled.Button>
+      </Styled.Form>
+      <Styled.Text>
         아이디가 있으신가요?
         <Link to={ROUTES.SIGNIN}>로그인하기</Link>
-      </Style.Text>
-    </Style.Container>
+      </Styled.Text>
+    </Styled.Container>
   );
 };
 
