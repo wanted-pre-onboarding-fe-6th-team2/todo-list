@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Global } from '@emotion/react';
+import { ROUTES } from 'constants/route';
+import { LOCALSTORAGE } from 'constants/localstorage';
+import Signin from 'pages/Signin/Signin';
+import Signup from 'pages/Signup/Signup';
+import Todos from 'pages/Todos/Todos';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import resetCss from 'styles/global';
 
-function App() {
+const App = () => {
+  const hasToken = !!localStorage.getItem(LOCALSTORAGE.ACCESS_TOKEN);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Global styles={resetCss} />
+      <Routes>
+        <Route
+          path={ROUTES.HOME}
+          element={hasToken ? <Navigate to={ROUTES.TODOS} /> : <Navigate to={ROUTES.SIGNIN} />}
+        />
+        <Route path={ROUTES.TODOS} element={<Todos />} />
+        <Route path={ROUTES.SIGNIN} element={<Signin />} />
+        <Route path={ROUTES.SIGNUP} element={<Signup />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
